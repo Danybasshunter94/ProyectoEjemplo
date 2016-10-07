@@ -12,8 +12,8 @@
 		<h3>Ejemplos Tomcat 2º DAW Mañana</H3>
 	</p>
 	<ul>
-		<li><a href="ejemplos/servlets">Servlets examples</a></li>
-		<li><a href="ejemplos/jsp">JSP Examples</a></li>
+		<li><a href="examples/servlets">Servlets examples</a></li>
+		<li><a href="examples/jsp">JSP Examples</a></li>
 		<li><a href="Clicks">Clicks</a></li>
 		<li><a href="Contador">Contador</a></li>
 	</ul>

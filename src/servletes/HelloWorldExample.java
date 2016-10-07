@@ -1,3 +1,4 @@
+package servletes;
 /*
 * Licensed to the Apache Software Foundation (ASF) under one or more
 * contributor license agreements.  See the NOTICE file distributed with
@@ -14,13 +15,8 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-/* $Id: RequestHeaderExample.java 1337730 2012-05-12 23:17:21Z kkolinko $
- *
- */
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
@@ -28,71 +24,55 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.HTMLFilter;
-
 /**
- * Example servlet showing request headers
+ * The simplest possible servlet.
  *
- * @author James Duncan Davidson <duncan@eng.sun.com>
+ * @author James Duncan Davidson
  */
 
-public class RequestHeaderExample extends HttpServlet {
+public class HelloWorldExample extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
-    private static final ResourceBundle RB = ResourceBundle.getBundle("LocalStrings");
 
     @Override
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
         throws IOException, ServletException
     {
+        ResourceBundle rb =
+            ResourceBundle.getBundle("LocalStrings",request.getLocale());
         response.setContentType("text/html");
-
         PrintWriter out = response.getWriter();
+
         out.println("<html>");
         out.println("<head>");
 
-        String title = RB.getString("requestheader.title");
+        String title = rb.getString("helloworld.title");
+
         out.println("<title>" + title + "</title>");
         out.println("</head>");
         out.println("<body bgcolor=\"white\">");
 
-        // all links relative
+        // note that all links are created to be relative. this
+        // ensures that we can move the web application that this
+        // servlet belongs to to a different place in the url
+        // tree and not have any harmful side effects.
 
         // XXX
         // making these absolute till we work out the
         // addition of a PathInfo issue
 
-        out.println("<a href=\"../reqheaders.html\">");
+        out.println("<a href=\"../helloworld.html\">");
         out.println("<img src=\"../images/code.gif\" height=24 " +
                     "width=24 align=right border=0 alt=\"view code\"></a>");
         out.println("<a href=\"../index.html\">");
         out.println("<img src=\"../images/return.gif\" height=24 " +
                     "width=24 align=right border=0 alt=\"return\"></a>");
-
-        out.println("<h3>" + title + "</h3>");
-        out.println("<table border=0>");
-        Enumeration<String> e = request.getHeaderNames();
-        while (e.hasMoreElements()) {
-            String headerName = e.nextElement();
-            String headerValue = request.getHeader(headerName);
-            out.println("<tr><td bgcolor=\"#CCCCCC\">");
-            out.println(HTMLFilter.filter(headerName));
-            out.println("</td><td>");
-            out.println(HTMLFilter.filter(headerValue));
-            out.println("</td></tr>");
-        }
-        out.println("</table>");
+        out.println("<h1>" + title + "</h1>");
+        out.println("</body>");
+        out.println("</html>");
     }
-
-    @Override
-    public void doPost(HttpServletRequest request,
-                      HttpServletResponse response)
-        throws IOException, ServletException
-    {
-        doGet(request, response);
-    }
-
 }
+
+
 

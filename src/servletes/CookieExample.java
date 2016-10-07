@@ -1,3 +1,4 @@
+package servletes;
 /*
 * Licensed to the Apache Software Foundation (ASF) under one or more
 * contributor license agreements.  See the NOTICE file distributed with
@@ -14,7 +15,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-/* $Id: RequestInfoExample.java 1337742 2012-05-12 23:58:37Z kkolinko $
+/* $Id: CookieExample.java 1337730 2012-05-12 23:17:21Z kkolinko $
  *
  */
 
@@ -23,6 +24,7 @@ import java.io.PrintWriter;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,12 +32,12 @@ import javax.servlet.http.HttpServletResponse;
 import util.HTMLFilter;
 
 /**
- * Example servlet showing request information.
+ * Example servlet showing request headers
  *
  * @author James Duncan Davidson <duncan@eng.sun.com>
  */
 
-public class RequestInfoExample extends HttpServlet {
+public class CookieExample extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -46,25 +48,33 @@ public class RequestInfoExample extends HttpServlet {
                       HttpServletResponse response)
         throws IOException, ServletException
     {
+
+        String cookieName = request.getParameter("cookiename");
+        String cookieValue = request.getParameter("cookievalue");
+        Cookie aCookie = null;
+        if (cookieName != null && cookieValue != null) {
+            aCookie = new Cookie(cookieName, cookieValue);
+            response.addCookie(aCookie);
+        }
+
         response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
         out.println("<html>");
         out.println("<head>");
 
-        String title = RB.getString("requestinfo.title");
+        String title = RB.getString("cookies.title");
         out.println("<title>" + title + "</title>");
         out.println("</head>");
         out.println("<body bgcolor=\"white\">");
 
-        // img stuff not req'd for source code html showing
-        // all links relative!
+        // relative links
 
         // XXX
         // making these absolute till we work out the
         // addition of a PathInfo issue
 
-        out.println("<a href=\"../reqinfo.html\">");
+        out.println("<a href=\"../cookies.html\">");
         out.println("<img src=\"../images/code.gif\" height=24 " +
                     "width=24 align=right border=0 alt=\"view code\"></a>");
         out.println("<a href=\"../index.html\">");
@@ -72,39 +82,44 @@ public class RequestInfoExample extends HttpServlet {
                     "width=24 align=right border=0 alt=\"return\"></a>");
 
         out.println("<h3>" + title + "</h3>");
-        out.println("<table border=0><tr><td>");
-        out.println(RB.getString("requestinfo.label.method"));
-        out.println("</td><td>");
-        out.println(HTMLFilter.filter(request.getMethod()));
-        out.println("</td></tr><tr><td>");
-        out.println(RB.getString("requestinfo.label.requesturi"));
-        out.println("</td><td>");
-        out.println(HTMLFilter.filter(request.getRequestURI()));
-        out.println("</td></tr><tr><td>");
-        out.println(RB.getString("requestinfo.label.protocol"));
-        out.println("</td><td>");
-        out.println(HTMLFilter.filter(request.getProtocol()));
-        out.println("</td></tr><tr><td>");
-        out.println(RB.getString("requestinfo.label.pathinfo"));
-        out.println("</td><td>");
-        out.println(HTMLFilter.filter(request.getPathInfo()));
-        out.println("</td></tr><tr><td>");
-        out.println(RB.getString("requestinfo.label.remoteaddr"));
-        out.println("</td><td>");
-        out.println(HTMLFilter.filter(request.getRemoteAddr()));
-        out.println("</td></tr>");
 
-        String cipherSuite=
-                (String)request.getAttribute("javax.servlet.request.cipher_suite");
-        if(cipherSuite!=null){
-            out.println("<tr><td>");
-            out.println("SSLCipherSuite:");
-            out.println("</td><td>");
-            out.println(HTMLFilter.filter(cipherSuite));
-            out.println("</td></tr>");
+        Cookie[] cookies = request.getCookies();
+        if ((cookies != null) && (cookies.length > 0)) {
+            out.println(RB.getString("cookies.cookies") + "<br>");
+            for (int i = 0; i < cookies.length; i++) {
+                Cookie cookie = cookies[i];
+                out.print("Cookie Name: " + HTMLFilter.filter(cookie.getName())
+                          + "<br>");
+                out.println("  Cookie Value: "
+                            + HTMLFilter.filter(cookie.getValue())
+                            + "<br><br>");
+            }
+        } else {
+            out.println(RB.getString("cookies.no-cookies"));
         }
 
-        out.println("</table>");
+        if (aCookie != null) {
+            out.println("<P>");
+            out.println(RB.getString("cookies.set") + "<br>");
+            out.print(RB.getString("cookies.name") + "  "
+                      + HTMLFilter.filter(cookieName) + "<br>");
+            out.print(RB.getString("cookies.value") + "  "
+                      + HTMLFilter.filter(cookieValue));
+        }
+
+        out.println("<P>");
+        out.println(RB.getString("cookies.make-cookie") + "<br>");
+        out.print("<form action=\"");
+        out.println("CookieExample\" method=POST>");
+        out.print(RB.getString("cookies.name") + "  ");
+        out.println("<input type=text length=20 name=cookiename><br>");
+        out.print(RB.getString("cookies.value") + "  ");
+        out.println("<input type=text length=20 name=cookievalue><br>");
+        out.println("<input type=submit></form>");
+
+
+        out.println("</body>");
+        out.println("</html>");
     }
 
     @Override
@@ -116,4 +131,5 @@ public class RequestInfoExample extends HttpServlet {
     }
 
 }
+
 

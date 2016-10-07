@@ -1,3 +1,4 @@
+package servletes;
 /*
 * Licensed to the Apache Software Foundation (ASF) under one or more
 * contributor license agreements.  See the NOTICE file distributed with
@@ -14,7 +15,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-/* $Id: RequestParamExample.java 1337730 2012-05-12 23:17:21Z kkolinko $
+/* $Id: RequestInfoExample.java 1337742 2012-05-12 23:58:37Z kkolinko $
  *
  */
 
@@ -30,12 +31,12 @@ import javax.servlet.http.HttpServletResponse;
 import util.HTMLFilter;
 
 /**
- * Example servlet showing request headers
+ * Example servlet showing request information.
  *
  * @author James Duncan Davidson <duncan@eng.sun.com>
  */
 
-public class RequestParamExample extends HttpServlet {
+public class RequestInfoExample extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -52,20 +53,19 @@ public class RequestParamExample extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
 
-        String title = RB.getString("requestparams.title");
+        String title = RB.getString("requestinfo.title");
         out.println("<title>" + title + "</title>");
         out.println("</head>");
         out.println("<body bgcolor=\"white\">");
 
         // img stuff not req'd for source code html showing
-
-       // all links relative
+        // all links relative!
 
         // XXX
         // making these absolute till we work out the
         // addition of a PathInfo issue
 
-        out.println("<a href=\"../reqparams.html\">");
+        out.println("<a href=\"../reqinfo.html\">");
         out.println("<img src=\"../images/code.gif\" height=24 " +
                     "width=24 align=right border=0 alt=\"view code\"></a>");
         out.println("<a href=\"../index.html\">");
@@ -73,32 +73,39 @@ public class RequestParamExample extends HttpServlet {
                     "width=24 align=right border=0 alt=\"return\"></a>");
 
         out.println("<h3>" + title + "</h3>");
-        String firstName = request.getParameter("firstname");
-        String lastName = request.getParameter("lastname");
-        out.println(RB.getString("requestparams.params-in-req") + "<br>");
-        if (firstName != null || lastName != null) {
-            out.println(RB.getString("requestparams.firstname"));
-            out.println(" = " + HTMLFilter.filter(firstName) + "<br>");
-            out.println(RB.getString("requestparams.lastname"));
-            out.println(" = " + HTMLFilter.filter(lastName));
-        } else {
-            out.println(RB.getString("requestparams.no-params"));
-        }
-        out.println("<P>");
-        out.print("<form action=\"");
-        out.print("RequestParamExample\" ");
-        out.println("method=POST>");
-        out.println(RB.getString("requestparams.firstname"));
-        out.println("<input type=text size=20 name=firstname>");
-        out.println("<br>");
-        out.println(RB.getString("requestparams.lastname"));
-        out.println("<input type=text size=20 name=lastname>");
-        out.println("<br>");
-        out.println("<input type=submit>");
-        out.println("</form>");
+        out.println("<table border=0><tr><td>");
+        out.println(RB.getString("requestinfo.label.method"));
+        out.println("</td><td>");
+        out.println(HTMLFilter.filter(request.getMethod()));
+        out.println("</td></tr><tr><td>");
+        out.println(RB.getString("requestinfo.label.requesturi"));
+        out.println("</td><td>");
+        out.println(HTMLFilter.filter(request.getRequestURI()));
+        out.println("</td></tr><tr><td>");
+        out.println(RB.getString("requestinfo.label.protocol"));
+        out.println("</td><td>");
+        out.println(HTMLFilter.filter(request.getProtocol()));
+        out.println("</td></tr><tr><td>");
+        out.println(RB.getString("requestinfo.label.pathinfo"));
+        out.println("</td><td>");
+        out.println(HTMLFilter.filter(request.getPathInfo()));
+        out.println("</td></tr><tr><td>");
+        out.println(RB.getString("requestinfo.label.remoteaddr"));
+        out.println("</td><td>");
+        out.println(HTMLFilter.filter(request.getRemoteAddr()));
+        out.println("</td></tr>");
 
-        out.println("</body>");
-        out.println("</html>");
+        String cipherSuite=
+                (String)request.getAttribute("javax.servlet.request.cipher_suite");
+        if(cipherSuite!=null){
+            out.println("<tr><td>");
+            out.println("SSLCipherSuite:");
+            out.println("</td><td>");
+            out.println(HTMLFilter.filter(cipherSuite));
+            out.println("</td></tr>");
+        }
+
+        out.println("</table>");
     }
 
     @Override
@@ -110,3 +117,4 @@ public class RequestParamExample extends HttpServlet {
     }
 
 }
+
