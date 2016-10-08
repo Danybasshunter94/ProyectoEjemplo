@@ -148,6 +148,14 @@
         <url-pattern>/examples/servlets/servletes/SessionExample</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+      <servlet-name>ServletToJsp</servlet-name>
+      <servlet-class>servletes.ServletToJsp</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletToJsp</servlet-name>
+        <url-pattern>/examples/jsp/jsptoserv/servletToJsp</url-pattern>
+    </servlet-mapping> 
 	
 	<!-- Mapeo Joshua -->
 	<servlet>
