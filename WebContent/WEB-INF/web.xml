@@ -15,84 +15,6 @@
     </description>
     <display-name>Servlet y JSP Ejemplos Joshua</display-name> -->
 	
-	
-	<!-- Define servlets that are included in the example application -->
-
-    <!-- <servlet>
-      <servlet-name>ServletToJsp</servlet-name>
-      <servlet-class>ServletToJsp</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ChatServlet</servlet-name>
-        <servlet-class>chat.ChatServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CompressionFilterTestServlet</servlet-name>
-        <servlet-class>compressionFilters.CompressionFilterTestServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>HelloWorldExample</servlet-name>
-        <servlet-class>servletes.HelloWorldExample</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RequestInfoExample</servlet-name>
-        <servlet-class>RequestInfoExample</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RequestHeaderExample</servlet-name>
-        <servlet-class>RequestHeaderExample</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RequestParamExample</servlet-name>
-        <servlet-class>RequestParamExample</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CookieExample</servlet-name>
-        <servlet-class>CookieExample</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SessionExample</servlet-name>
-        <servlet-class>SessionExample</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>ChatServlet</servlet-name>
-        <url-pattern>/jsp/chat/chat</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CompressionFilterTestServlet</servlet-name>
-        <url-pattern>/CompressionTest</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>HelloWorldExample</servlet-name>
-        <url-pattern>/examples/servlets/servlet/HelloWorldExample</url-pattern>
-         <url-pattern>/HelloWorldExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestInfoExample</servlet-name>
-        <url-pattern>/servlets/servlet/RequestInfoExample/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestHeaderExample</servlet-name>
-        <url-pattern>/servlets/servlet/RequestHeaderExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RequestParamExample</servlet-name>
-        <url-pattern>/servlets/servlet/RequestParamExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CookieExample</servlet-name>
-        <url-pattern>/servlets/servlet/CookieExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SessionExample</servlet-name>
-        <url-pattern>/servlets/servlet/SessionExample</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletToJsp</servlet-name>
-        <url-pattern>/servletToJsp</url-pattern>
-    </servlet-mapping>  -->  
-	
 	<!-- Definicion de Servlets en el ejemplo  CORRECTOS -->
 	 <servlet>
         <servlet-name>HelloWorldExample</servlet-name>
@@ -100,6 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloWorldExample</servlet-name>
+        <!-- Ruta con paquete donde se encuentras los archivos que referencia -->
         <url-pattern>/examples/servlets/servletes/HelloWorldExample</url-pattern>
     </servlet-mapping>
     

@@ -16,6 +16,7 @@
 		<li><a href="examples/jsp">JSP Examples</a></li>
 		<li><a href="Clicks">Clicks</a></li>
 		<li><a href="Contador">Contador</a></li>
+		<li><a href="jsp">Carrito de la compra</a></li>
 	</ul>
 </body>
 </html>
