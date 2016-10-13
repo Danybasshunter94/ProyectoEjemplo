@@ -23,7 +23,7 @@
     <servlet-mapping>
         <servlet-name>HelloWorldExample</servlet-name>
         <!-- Ruta con paquete donde se encuentras los archivos que referencia -->
-        <url-pattern>/examples/servlets/servletes/HelloWorldExample</url-pattern>
+        <url-pattern>/XYZ</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -32,7 +32,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RequestInfoExample</servlet-name>
-        <url-pattern>/examples/servlets/servletes/RequestInfoExample/*</url-pattern>
+        <url-pattern>/Recuestado/*</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -41,7 +41,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RequestHeaderExample</servlet-name>
-        <url-pattern>/examples/servlets/servletes/RequestHeaderExample</url-pattern>
+        <url-pattern>/ejemplo/Headeado</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -78,6 +78,56 @@
     <servlet-mapping>
         <servlet-name>ServletToJsp</servlet-name>
         <url-pattern>/examples/jsp/jsptoserv/servletToJsp</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>async0</servlet-name>
+      <servlet-class>async.Async0</servlet-class>
+      <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>async0</servlet-name>
+      <url-pattern>/examples/jsp/async/async0</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>async1</servlet-name>
+      <servlet-class>async.Async1</servlet-class>
+      <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>async1</servlet-name>
+      <url-pattern>/examples/jsp/async/async1</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>async2</servlet-name>
+      <servlet-class>async.Async2</servlet-class>
+      <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>async2</servlet-name>
+      <url-pattern>/examples/jsp/async/async2</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>async3</servlet-name>
+      <servlet-class>async.Async3</servlet-class>
+      <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>async3</servlet-name>
+      <url-pattern>/examples/jsp/async/async3</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>stock</servlet-name>
+      <servlet-class>async.AsyncStockServlet</servlet-class>
+      <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>stock</servlet-name>
+      <url-pattern>/examples/jsp/async/stockticker</url-pattern>
     </servlet-mapping> 
 	
 	<!-- Mapeo Joshua -->

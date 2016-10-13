@@ -41,7 +41,7 @@ public class Async1 extends HttpServlet {
             @Override
             public void run() {
                 try {
-                    String path = "/jsp/async/async1.jsp";
+                    String path = "/examples/jsp/async/async1.jsp";
                     Thread.currentThread().setName("Async1-Thread");
                     log.info("Putting AsyncThread to sleep");
                     Thread.sleep(2*1000);
