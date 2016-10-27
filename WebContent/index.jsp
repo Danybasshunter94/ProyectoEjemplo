@@ -9,14 +9,14 @@
 <body>
 <%-- <%     response.sendRedirect("Clicks"); %> --%>
 	<p>
-		<h3>Ejemplos Tomcat 2º DAW Mañana</H3>
+		<h3>Ejemplos Tomcat</H3>
 	</p>
-	<ul>
+	<ol>
 		<li><a href="examples/servlets">Servlets examples</a></li>
 		<li><a href="examples/jsp">JSP Examples</a></li>
 		<li><a href="Clicks">Clicks</a></li>
 		<li><a href="Contador">Contador</a></li>
 		<li><a href="jsp">Carrito de la compra</a></li>
-	</ul>
+	</ol>
 </body>
 </html>
